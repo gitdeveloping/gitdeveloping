@@ -12,10 +12,10 @@
 @import 'body';
 @import 'button';
 
-.gradient {
-  background-image: linear-gradient($secondary, $primary);
+.section-grey {
+  background-color: $tertiary;
   
   * {
-    color: white;
+    color: black;
   }
 }

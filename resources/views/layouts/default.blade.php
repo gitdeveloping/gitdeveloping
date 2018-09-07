@@ -2,11 +2,11 @@
 @include('layouts.head')
 
 <body>
-    @include('layouts.navigation')
-
+@include('layouts.navigation')
+<div class="position-relative">
     @yield('content')
-
     @include('layouts.footer')
+</div>
 </body>
 
 
