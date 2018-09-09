@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -35,5 +38,27 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'login' => 'required|string',
+            'password' => 'required|string',
+            'remember' => 'nullable'
+        ]);
+
+        // get some credentials
+        $field = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $request->merge([$field => $request->input('login')]);
+        $credentials = $request->only(['email', 'password', 'username']);
+
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
+            return redirect('/home');
+        } else {
+            throw ValidationException::withMessages([
+                'login' => [trans('auth.failed')],
+            ]);
+        }
     }
 }
