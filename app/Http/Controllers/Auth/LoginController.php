@@ -54,7 +54,7 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password', 'username']);
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
-            return redirect('/home');
+            return redirect()->route('home');
         } else {
             throw ValidationException::withMessages([
                 'login' => [trans('auth.failed')],

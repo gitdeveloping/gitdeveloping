@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-8 offset-md-4">
+                                <div class="col-md-offset-4 col-md-8">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember"
                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="form-group row mb-0 mx-auto d-block">
-                                <button type="submit" class="dark btn-lg">
+                                <button type="submit" class="col-md-12 dark btn">
                                     {{ __('Login') }}
                                 </button>
                             </div>

@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['domain' => env('DOMAIN')], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Auth::routes();
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['domain' => 'app.'.env('DOMAIN'), 'middleware' => ['auth']], function () {
+    Route::get('/', 'App\HomeController@index')->name('home');
+});

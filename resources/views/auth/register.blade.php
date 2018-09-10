@@ -79,12 +79,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="mx-auto d-block">
-                                <button type="submit" class="dark btn-lg">
-                                    Sign Up
-                                </button>
-                            </div>
+                        <div class="form-group row">
+                            <button type="submit" class="dark btn col-md-11 mx-auto d-block">
+                                Sign Up
+                            </button>
                         </div>
                     </form>
                 </div>
