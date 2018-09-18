@@ -21,4 +21,8 @@ Route::group(['domain' => env('DOMAIN')], function () {
 
 Route::group(['domain' => 'app.'.env('DOMAIN'), 'middleware' => ['auth']], function () {
     Route::get('/', 'App\HomeController@index')->name('home');
+    Route::get('/challenges/{challenge}', 'App\HomeController@challenge')->name('challenge.view');
+
 });
+
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('routeRestrictor:username,password');

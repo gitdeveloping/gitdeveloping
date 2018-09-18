@@ -54,6 +54,7 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password', 'username']);
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
+            $token = Auth::user()->createToken('gitdeveloping')->accessToken;
             return redirect()->route('home');
         } else {
             throw ValidationException::withMessages([

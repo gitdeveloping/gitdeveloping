@@ -15,3 +15,4 @@ require('./bootstrap');
 
 require('./components/Example');
 require('./components/Challenges/ChallengeTable');
+require('./components/Challenges/ChallengeSandbox');

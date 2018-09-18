@@ -14,20 +14,14 @@ export default class ChallengeTable extends Component {
 
     componentWillMount() {
         axios.get('/api/challenges').then(response => {
-            this.setState({challenges: response.data});
+            console.log(response.data.data);
+            this.setState({challenges: response.data.data});
         }).catch(error => console.log(error));
     }
 
     render() {
         return (
             <div className="container p-0">
-                <div className="card mb-2 text-left">
-                    <div className="row">
-                        <button className="btn btn-rounded btn-outline-primary ml-3">JavaScript</button>
-                        <button className="btn btn-rounded btn-outline-primary ml-2">PHP</button>
-                    </div>
-                </div>
-
                 <div className="card mb-2 text-left">
                     <div className="row">
                         <div className="col-md-1">
@@ -51,29 +45,33 @@ export default class ChallengeTable extends Component {
                     </div>
                 </div>
 
+                {this.state.challenges.map((challenge, i) => {
 
-                <div className="card mb-2 text-left">
-                    <div className="row">
-                        <div className="col-md-1">
-                            1.
+                    return <a href={'challenges/'+challenge.id}>
+                        <div className="card mb-2 text-left">
+                            <div className="row">
+                                <div className="col-md-1">
+                                    {challenge.id}.
+                                </div>
+                                <div className="col-md-3">
+                                    {challenge.title}
+                                </div>
+                                <div className="col-md-2">
+                                    PASSED
+                                </div>
+                                <div className="col-md-2">
+                                    <Icon star name="star"/>
+                                </div>
+                                <div className="col-md-2">
+                                    <Icon star name="star"/>
+                                </div>
+                                <div className="col-md-2">
+                                    <a className="" href="#">{challenge.created_by.first_name + ' ' + challenge.created_by.last_name}</a>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-md-3">
-                            Modulus Numbers
-                        </div>
-                        <div className="col-md-2">
-                            PASSED
-                        </div>
-                        <div className="col-md-2">
-                            <Icon star name="star" />
-                        </div>
-                        <div className="col-md-2">
-                            <Icon star name="star" />
-                        </div>
-                        <div className="col-md-2">
-                            <a className="" href="#">Jared Wheatley</a>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                })}
             </div>
         );
     }
